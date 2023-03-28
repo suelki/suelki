@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <style>
+        span{
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+     <h2>정규 표현식을 이용한 회원가입 폼</h2>
+     <fieldset>
+    <form action="test.do">
+        * 아이디 : <input type="text" id="userId" required> <br>
+        <span>첫글자는 반드시 영문자로, 그리고 영문자,숫자를 포함하여 총 4~12자로 입력하시오</span> <br><br>
+        * 비밀번호 : <input type="password" id="userPwd" required> <br>
+        <span>영문자,숫자,특수문자(!@#$%^&*)로 총 8~15자로 입력하시오.</span> <br><br>
+        * 비밀번호 확인 : <input type="password" id="checkPwd" required> <br>
+        <span>위의 번호와 일치하게 입력하시오.</span> <br><br>
+        * 이름 : <input type="text" id="userName" required> <br>
+        <span>한글자로만 이루어져야하며 2글자 이상으로 입력하시오.</span> <br><br>
+         이메일 : <input type="email" id="email" > <br>
+        <span>이메일 형식에 맞춰서 입력하시오</span> <br><br>
+         취미 : <input type="text" id="hobby"  placeholder="게임,축구,영화보기"> <br><br>
+         거주지 : <select name="city" id="city" >
+                    <option value="서울">서울</option>
+                    <option value="인천">인천</option>
+                    <option value="경기">경기</option>
+
+                </select>
+                <br><br>
+        <button onclick="return test1();">회원가입</button>
+        <input type="reset" value="취소">
+    </form>
+     </fieldset>
+
+
+     <script>
+        function test1(){
+            var id = document.getElementById("userId");
+            var pwd = document.getElementById("userPwd");
+            var checkPwd = document.getElementById("checkPwd").value;
+            var name = document.getElementById("userName").value;
+            var email = document.getElementById("email").value;
+
+            var regExp = /^[a-zA-Z][a-zA-Z0-9]{3,11}$/;
+            
+            
+           
+            if(!regExp.test(id.value)){
+                alert("아이디 형식이 올바르지않습니다.");
+                id.select();
+                return false;
+            
+            }
+
+            //비밀번호 검사
+            regExp = /^[a-zA-Z0-9!@#$%^&*]{8,15}$/;
+            if(!regExp.test(pwd.value)){
+                alert("영문자,숫자,특수문자를 확인해주세요.");
+                pwd.focus();
+                return false;
+                
+            }
+
+            //
+            if(pwd.value != checkPwd){
+                alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+
+                return false;
+            }
+
+            //이름 검사
+            //한글 2글자 이상
+            regExp = /^[가-힣]{2,}$/; //2글자 이상 {범위에서 앞쪽만 작성하면 그 이상}
+
+            if(!regExp.test(name)){
+                alert("이름 형식이 올바르지 않습니다.");
+                return false;
+            }
+
+
+    }
+     </script>
+</body>
+</html>
