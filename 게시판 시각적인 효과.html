@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <style>
+        div{
+            background-color: antiquewhite;
+            width: 600px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 10px;
+            border: 2px solid rgb(250, 205, 146);
+            cursor: pointer;
+        }
+        p{
+            border: 1px solid pink;
+            background-color: rgb(243, 188, 216);
+            width: 300px;
+            height: 50px;
+            margin-top: 10px;
+            border-radius: 10px;
+            box-sizing: border-box;
+            display: none;/*처음에는 보여지지 않게*/
+        }
+    </style>
+</head>
+<body>
+    <h3>slideDown()과 slideUp()</h3>
+
+    <div>Q. 그지같은거 보내놓고 뭐합니까?!</div>
+    <p>불편을 드려 정말 죄송합니다. 금일 다른 상품으로 재발송해드리겠읍니다.</p>
+
+    <div>Q. 딸기가 단가요 신가요</div>
+    <p>저희 딸기는 엄청 달아요</p>
+
+    <div>Q. 배송시작한지 2년지났는데 아직 도착안했어요 이제 재배시작하나요</div>
+    <p> 금일 재배 시작햇습니다. 올해안에 뱅송토록 하겠습니다.</p>
+
+    <script>
+        $(function(){
+            $("div").click(function(){
+                //$(this).next()
+
+                var $p = $(this).next(); //jQuery변수 앞에 $표시
+
+                //display가 none인 요소를 보여줄수있게 작업하기
+                if($p.css("display") == "none"){//div뒤에 있는요소 display속성 값이 none이면
+                    $(this).siblings("p").slideUp();//기존에 열려있는게 있으면 사라지게하기
+                    $p.slideDown(1000);//해당 p태그 보여지기
+                }else{
+                    $p.slideUp(1000);//해당 p태그 사라지기
+                }
+            })
+        })
+    </script>
